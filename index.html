@@ -66,22 +66,20 @@
       letter-spacing:.3px;
       white-space:nowrap;
     }
-
-    /* UPDATED: logo container now holds your image */
     .logo{
       width:34px; height:34px; border-radius:12px;
-      overflow:hidden; /* important */
-      background: rgba(255,255,255,.06); /* fallback while image loads */
+      background:
+        conic-gradient(from 210deg, var(--red), var(--blue), var(--red2), var(--blue2), var(--red));
       box-shadow: 0 10px 26px rgba(37,99,235,.18), 0 10px 26px rgba(229,9,20,.14);
       position:relative;
+      overflow:hidden;
     }
-    .logo-img{
-      width:100%;
-      height:100%;
-      object-fit: cover;
-      display:block;
+    .logo:after{
+      content:"";
+      position:absolute; inset:-40%;
+      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.25), transparent 45%);
+      transform: rotate(12deg);
     }
-
     .brand span{
       font-size:14px;
       color:var(--muted);
@@ -439,446 +437,255 @@
       letter-spacing:.2px;
       color: var(--text);
     }
-    .pane
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sai Adithya Dathrak | Portfolio</title>
-  <meta name="description" content="Machine Learning & Python Developer — Data Science, Analytics, Data Engineering" />
-
-  <style>
-    :root{
-      --bg0:#070B14;
-      --bg1:#0B1226;
-      --panel:#0F1A33;
-      --text:#EAF0FF;
-      --muted:#B7C3E6;
-      --line:rgba(255,255,255,.10);
-
-      --red:#E50914;
-      --red2:#FF3640;
-      --blue:#2563EB;
-      --blue2:#38BDF8;
-
-      --shadow: 0 16px 40px rgba(0,0,0,.50);
-      --radius: 18px;
+    .panel p, .panel li{
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.6;
     }
-
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
-      background:
-        radial-gradient(900px 500px at 10% 10%, rgba(37,99,235,.25), transparent 60%),
-        radial-gradient(900px 500px at 90% 20%, rgba(229,9,20,.18), transparent 55%),
-        radial-gradient(700px 400px at 60% 90%, rgba(56,189,248,.12), transparent 60%),
-        linear-gradient(180deg, var(--bg0), var(--bg1) 60%, var(--bg0));
-      color:var(--text);
-      overflow-x:hidden;
-    }
-
-    a{color:inherit; text-decoration:none}
-    .wrap{max-width:1160px; margin:0 auto; padding:0 18px}
-
-    /* Top nav (Netflix-ish) */
-    .topbar{
-      position:sticky;
-      top:0;
-      z-index:50;
-      backdrop-filter: blur(10px);
-      background: linear-gradient(180deg, rgba(7,11,20,.92), rgba(7,11,20,.55));
-      border-bottom: 1px solid rgba(255,255,255,.06);
-    }
-    .nav{
+    .panel ul{margin:0; padding-left: 18px}
+    .split{
       display:flex;
-      align-items:center;
-      justify-content:space-between;
-      padding:14px 0;
-      gap:14px;
-    }
-
-    .brand{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      font-weight:800;
-      letter-spacing:.3px;
-      white-space:nowrap;
-    }
-
-    /* UPDATED: logo container now holds your image */
-    .logo{
-      width:34px; height:34px; border-radius:12px;
-      overflow:hidden; /* important */
-      background: rgba(255,255,255,.06); /* fallback while image loads */
-      box-shadow: 0 10px 26px rgba(37,99,235,.18), 0 10px 26px rgba(229,9,20,.14);
-      position:relative;
-    }
-    .logo-img{
-      width:100%;
-      height:100%;
-      object-fit: cover;
-      display:block;
-    }
-
-    .brand span{
-      font-size:14px;
-      color:var(--muted);
-      font-weight:600;
-      margin-left:8px;
-    }
-
-    .navlinks{
-      display:flex;
-      align-items:center;
       gap:10px;
       flex-wrap:wrap;
-      justify-content:flex-end;
     }
-    .pill{
+    .kv{
+      flex: 1 1 220px;
       border:1px solid rgba(255,255,255,.10);
-      background: rgba(15,26,51,.55);
-      border-radius:999px;
-      padding:8px 10px;
-      font-size:13px;
-      color:var(--muted);
-      transition:.18s ease;
-      cursor:pointer;
-      user-select:none;
+      background: rgba(7,11,20,.30);
+      border-radius: 16px;
+      padding: 12px;
     }
-    .pill:hover{transform:translateY(-1px); border-color: rgba(56,189,248,.28); color:var(--text)}
-    .pill.primary{
-      border:none;
-      background: linear-gradient(135deg, rgba(229,9,20,.95), rgba(37,99,235,.85));
-      color:#fff;
-      font-weight:700;
-      box-shadow: 0 14px 34px rgba(229,9,20,.16);
-    }
-    .pill.primary:hover{filter:saturate(1.08); transform:translateY(-1px) scale(1.01)}
+    .kv .k{font-size:11px; color:var(--muted); text-transform:uppercase; letter-spacing:.35px}
+    .kv .v{margin-top:6px; font-weight:900; color:var(--text); font-size:13px}
 
-    /* Hero */
-    .hero{
-      position:relative;
-      padding:46px 0 18px;
-    }
-    .heroGrid{
-      display:grid;
-      grid-template-columns: 1.18fr .82fr;
-      gap:18px;
-      align-items:stretch;
-    }
-    @media (max-width: 900px){
-      .heroGrid{grid-template-columns:1fr}
+    /* Footer */
+    footer{
+      margin: 22px 0 40px;
+      color: var(--muted);
+      font-size: 12px;
+      text-align:center;
     }
 
-    .heroCard{
-      border:1px solid rgba(255,255,255,.10);
+    /* Modal */
+    .backdrop{
+      position:fixed;
+      inset:0;
+      background: rgba(0,0,0,.65);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      padding: 18px;
+      z-index: 100;
+    }
+    .backdrop.show{display:flex}
+    .modal{
+      width:min(920px, 100%);
+      border-radius: 20px;
+      border:1px solid rgba(255,255,255,.12);
       background:
-        radial-gradient(900px 420px at 10% 10%, rgba(37,99,235,.20), transparent 60%),
-        radial-gradient(900px 420px at 90% 20%, rgba(229,9,20,.14), transparent 55%),
-        rgba(15,26,51,.55);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: 24px;
+        radial-gradient(900px 400px at 10% 10%, rgba(37,99,235,.18), transparent 60%),
+        radial-gradient(900px 400px at 90% 10%, rgba(229,9,20,.14), transparent 55%),
+        rgba(11,18,38,.95);
+      box-shadow: 0 30px 80px rgba(0,0,0,.62);
       overflow:hidden;
-      position:relative;
-      min-height: 320px;
     }
-    .heroCard:before{
+    .modalHero{
+      padding: 18px;
+      position:relative;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      background:
+        linear-gradient(135deg, rgba(229,9,20,.20), rgba(37,99,235,.20)),
+        radial-gradient(700px 220px at 30% 30%, rgba(255,255,255,.10), transparent 60%);
+    }
+    .modalHero:after{
       content:"";
-      position:absolute;
-      inset:-2px;
-      background: linear-gradient(120deg, rgba(229,9,20,.22), rgba(37,99,235,.20), transparent 55%);
-      filter: blur(18px);
-      opacity:.65;
+      position:absolute; inset:0;
+      background: linear-gradient(180deg, transparent, rgba(7,11,20,.55));
       pointer-events:none;
     }
-    .heroCard > *{position:relative; z-index:1}
-
-    .kicker{
-      display:flex;
-      gap:10px;
-      align-items:center;
-      color:var(--muted);
-      font-weight:700;
-      letter-spacing:.3px;
-      font-size:12px;
-      text-transform:uppercase;
-    }
-    .dot{
-      width:8px; height:8px; border-radius:999px;
-      background: linear-gradient(135deg, var(--red), var(--blue));
-      box-shadow: 0 0 0 6px rgba(229,9,20,.10);
-    }
-
-    h1{
-      margin:10px 0 8px;
-      font-size: clamp(28px, 4vw, 46px);
-      line-height:1.06;
-      letter-spacing:-.6px;
-    }
-    .sub{
-      margin:0 0 16px;
-      color: var(--muted);
-      font-size: 15px;
-      line-height:1.55;
-      max-width: 62ch;
-    }
-
-    .ctaRow{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      margin-top:16px;
-      align-items:center;
-    }
-    .btn{
-      border:none;
-      border-radius: 12px;
-      padding: 11px 12px;
-      font-weight:800;
-      cursor:pointer;
-      transition:.18s ease;
-      display:inline-flex;
-      align-items:center;
-      gap:10px;
-      letter-spacing:.2px;
-    }
-    .btn.play{
-      color:#fff;
-      background: linear-gradient(135deg, rgba(229,9,20,.96), rgba(255,54,64,.86));
-      box-shadow: 0 16px 34px rgba(229,9,20,.18);
-    }
-    .btn.play:hover{transform:translateY(-1px)}
-    .btn.info{
-      color: var(--text);
-      background: rgba(255,255,255,.12);
-      border: 1px solid rgba(255,255,255,.14);
-    }
-    .btn.info:hover{transform:translateY(-1px); border-color: rgba(56,189,248,.26)}
-    .btn svg{width:16px; height:16px}
-
-    .badgeRow{
-      display:flex;
-      flex-wrap:wrap;
-      gap:8px;
-      margin-top:14px;
-    }
-    .badge{
-      font-size:12px;
-      color: var(--muted);
-      background: rgba(7,11,20,.35);
-      border: 1px solid rgba(255,255,255,.10);
-      padding:7px 10px;
-      border-radius: 999px;
-    }
-    .badge b{color: var(--text)}
-    .badge.accent{
-      border:none;
-      background: linear-gradient(135deg, rgba(37,99,235,.28), rgba(56,189,248,.18));
-      color: var(--text);
-    }
-
-    .sideCard{
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(15,26,51,.45);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: 18px;
-      min-height: 320px;
-      display:flex;
-      flex-direction:column;
-      gap:12px;
-    }
-    .sideTop{
+    .modalHero > *{position:relative; z-index:1}
+    .modalTop{
       display:flex;
       align-items:flex-start;
       justify-content:space-between;
       gap:10px;
     }
-    .sideTitle{
-      font-weight:900;
-      letter-spacing:.2px;
-      font-size:16px;
+    .modalTitle{
       margin:0;
-    }
-    .sideNote{
-      margin:0;
-      color:var(--muted);
-      font-size:13px;
-      line-height:1.55;
-    }
-    .miniGrid{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap:10px;
-      margin-top:6px;
-    }
-    .mini{
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(7,11,20,.30);
-      border-radius: 14px;
-      padding: 12px;
-    }
-    .mini h4{
-      margin:0 0 6px;
-      font-size:12px;
-      color:var(--muted);
-      text-transform:uppercase;
-      letter-spacing:.3px;
-    }
-    .mini p{
-      margin:0;
-      font-weight:900;
-      font-size:14px;
-      line-height:1.2;
-    }
-
-    /* Rows (Netflix shelves) */
-    .section{
-      margin: 22px 0 28px;
-    }
-    .sectionHead{
-      display:flex;
-      align-items:flex-end;
-      justify-content:space-between;
-      gap:12px;
-      margin: 10px 0 10px;
-    }
-    .sectionHead h2{
-      margin:0;
-      font-size:18px;
-      letter-spacing:.2px;
-    }
-    .sectionHead span{
-      color:var(--muted);
-      font-size:12px;
-    }
-
-    .row{
-      position:relative;
-      padding: 4px 0 6px;
-    }
-    .scroller{
-      display:flex;
-      gap:12px;
-      overflow:auto;
-      scroll-snap-type:x mandatory;
-      padding: 10px 2px 18px;
-      scrollbar-width: thin;
-      scrollbar-color: rgba(255,255,255,.18) transparent;
-    }
-    .scroller::-webkit-scrollbar{height:10px}
-    .scroller::-webkit-scrollbar-thumb{
-      background: rgba(255,255,255,.16);
-      border-radius:999px;
-    }
-    .card{
-      flex: 0 0 270px;
-      scroll-snap-align:start;
-      border-radius: 16px;
-      border: 1px solid rgba(255,255,255,.10);
-      background:
-        radial-gradient(280px 140px at 20% 20%, rgba(37,99,235,.18), transparent 60%),
-        radial-gradient(280px 140px at 80% 10%, rgba(229,9,20,.14), transparent 60%),
-        rgba(15,26,51,.48);
-      box-shadow: 0 14px 30px rgba(0,0,0,.38);
-      overflow:hidden;
-      cursor:pointer;
-      transition:.18s ease;
-      position:relative;
-    }
-    .card:hover{
-      transform: translateY(-4px) scale(1.02);
-      border-color: rgba(56,189,248,.26);
-    }
-
-    .poster{
-      height: 120px;
-      background:
-        linear-gradient(135deg, rgba(229,9,20,.25), rgba(37,99,235,.25)),
-        radial-gradient(180px 120px at 30% 30%, rgba(255,255,255,.10), transparent 60%);
-      position:relative;
-    }
-    .poster:after{
-      content:"";
-      position:absolute; inset:0;
-      background: linear-gradient(180deg, transparent, rgba(7,11,20,.80));
-    }
-    .tag{
-      position:absolute;
-      left:12px;
-      top:12px;
-      font-size:11px;
-      font-weight:900;
-      letter-spacing:.35px;
-      padding:6px 10px;
-      border-radius:999px;
-      background: rgba(7,11,20,.55);
-      border: 1px solid rgba(255,255,255,.12);
-      color: #fff;
-      backdrop-filter: blur(8px);
-    }
-    .tag.red{ border-color: rgba(229,9,20,.35) }
-    .tag.blue{ border-color: rgba(37,99,235,.35) }
-
-    .cardBody{padding: 12px 12px 14px}
-    .title{
-      margin:0 0 6px;
+      font-size: 18px;
       font-weight:950;
       letter-spacing:.2px;
-      font-size: 14px;
-      line-height:1.25;
     }
-    .meta{
-      margin:0 0 10px;
-      color: var(--muted);
-      font-size: 12px;
-      line-height:1.45;
-      min-height: 34px;
-    }
-    .chips{
-      display:flex;
-      flex-wrap:wrap;
-      gap:6px;
-    }
-    .chip{
-      font-size:11px;
-      color: var(--muted);
-      padding:6px 8px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,.10);
+    .close{
+      border: 1px solid rgba(255,255,255,.14);
       background: rgba(7,11,20,.35);
+      color: #fff;
+      border-radius: 12px;
+      padding: 8px 10px;
+      cursor:pointer;
+      transition:.18s ease;
     }
-    .chip.accent{
-      border:none;
-      color:#fff;
-      background: linear-gradient(135deg, rgba(37,99,235,.70), rgba(229,9,20,.60));
+    .close:hover{transform:translateY(-1px); border-color: rgba(56,189,248,.28)}
+    .modalMeta{
+      margin: 8px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height:1.55;
+      max-width: 86ch;
     }
-
-    /* Grid section */
-    .grid{
-      display:grid;
-      grid-template-columns: 1.1fr .9fr;
-      gap: 14px;
+    .modalBody{
+      padding: 14px 18px 18px;
     }
-    @media (max-width: 900px){
-      .grid{grid-template-columns:1fr}
-    }
-    .panel{
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(15,26,51,.40);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: 16px;
-    }
-    .panel h3{
-      margin:0 0 10px;
-      font-size:14px;
-      letter-spacing:.2px;
+    .modalBody h4{
+      margin: 12px 0 8px;
+      font-size: 13px;
+      text-transform:uppercase;
+      letter-spacing:.35px;
       color: var(--text);
     }
-    .pane
+    .bullets{
+      margin: 0;
+      padding-left: 18px;
+    }
+    .bullets li{margin: 6px 0}
+    .modalLinks{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top: 12px;
+    }
+    .linkBtn{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding: 10px 12px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(7,11,20,.30);
+      color: var(--text);
+      font-weight:800;
+      font-size: 13px;
+      cursor:pointer;
+      transition:.18s ease;
+    }
+    .linkBtn:hover{transform:translateY(-1px); border-color: rgba(56,189,248,.28)}
+    .hint{
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 6px;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Topbar -->
+  <div class="topbar">
+    <div class="wrap">
+      <div class="nav">
+        <div class="brand">
+          <div class="logo" aria-hidden="true"></div>
+          Sai Adithya Dathrak <span>Machine Learning & Python Developer</span>
+        </div>
+
+        <div class="navlinks">
+          <div class="pill" onclick="scrollToId('projects')">Projects</div>
+          <div class="pill" onclick="scrollToId('experience')">Experience</div>
+          <div class="pill" onclick="scrollToId('skills')">Skills</div>
+          <div class="pill" onclick="scrollToId('education')">Education</div>
+          <div class="pill primary" onclick="scrollToId('contact')">Contact</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hero -->
+  <header class="hero">
+    <div class="wrap">
+      <div class="heroGrid">
+        <div class="heroCard">
+          <div class="kicker"><span class="dot"></span> Now Streaming: your next hire</div>
+          <h1>Building ML, analytics, and data pipelines that actually ship.</h1>
+          <p class="sub">
+            Master’s in Information Systems & Technology (GPA 3.83) with 2+ years of experience across
+            data science, analytics, and data engineering. Strong in Python, R, SQL, and cloud tools like AWS,
+            Databricks, and Spark — plus dashboards in Power BI and Tableau.
+          </p>
+
+          <div class="ctaRow">
+            <button class="btn play" onclick="scrollToId('projects')" aria-label="View projects">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+              Play Projects
+            </button>
+
+            <button class="btn info" onclick="openModalFromId('about-card')" aria-label="More info">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M11 9h2V7h-2v2zm0 8h2v-6h-2v6z"/><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>
+              More Info
+            </button>
+          </div>
+
+          <div class="badgeRow">
+            <div class="badge accent"><b>Focus:</b> ML • ETL • Dashboards • Cloud</div>
+            <div class="badge"><b>Core:</b> Python • SQL • AWS</div>
+            <div class="badge"><b>Big Data:</b> Databricks • Spark</div>
+            <div class="badge"><b>Viz:</b> Power BI • Tableau</div>
+            <div class="badge"><b>ML:</b> XGBoost • SVM • ANN/CNN</div>
+          </div>
+        </div>
+
+        <aside class="sideCard">
+          <div class="sideTop">
+            <p class="sideTitle">Quick stats</p>
+            <div class="pill" onclick="scrollToId('skills')" title="Jump to skills">Browse</div>
+          </div>
+          <p class="sideNote">
+            A fast snapshot — click any card below to open “details mode” like Netflix.
+          </p>
+
+          <div class="miniGrid">
+            <div class="mini">
+              <h4>Experience</h4>
+              <p>2+ years</p>
+            </div>
+            <div class="mini">
+              <h4>Degree</h4>
+              <p>MS (GPA 3.83)</p>
+            </div>
+            <div class="mini">
+              <h4>Strengths</h4>
+              <p>ETL + ML</p>
+            </div>
+            <div class="mini">
+              <h4>Dashboards</h4>
+              <p>Power BI + Tableau</p>
+            </div>
+          </div>
+
+          <div class="panel" style="margin-top:8px">
+            <h3 style="margin:0 0 8px">What I’m into right now</h3>
+            <ul style="margin:0; padding-left:18px">
+              <li>AI agents + LLM curiosity</li>
+              <li>Model tuning + feature engineering</li>
+              <li>Making data products feel “instant”</li>
+            </ul>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </header>
+
+  <!-- Shelves -->
+  <main class="wrap">
+    <!-- Projects -->
+    <section class="section" id="projects">
+      <div class="sectionHead">
+        <h2>Featured Projects</h2>
+        <span>Click a card for details</span>
+      </div>
+
+      <div class="row">
+        <div class="scroller" id="projectsRow"></div>
+      </div>
+    </section>
+
+    <!-- Experience -->
+    
